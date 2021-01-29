@@ -1,0 +1,222 @@
+#app {
+    margin-top: 0;
+  
+    display: grid;
+    grid-template-rows: auto 1fr;
+    align-items: stretch;
+  }
+  
+  body, html, #app {
+      min-height: 100%;
+      height: 100%;
+      position: relative;
+  }
+  
+  body {
+    background-color: var(--color-gray-light);
+  }
+  
+.box {
+    background-color: var(--color-light);
+    border: 1px solid var(--color-dark);
+    padding: calc(var(--space)*0.5) var(--space);
+    box-shadow: 2px 2px 0 var(--color-dark);
+    margin-bottom: calc(var(--space)*1.5);
+}
+
+.inline-block {
+  display: inline-block;
+  vertical-align: middle;
+  vertical-align: -moz-middle-with-baseline;
+  vertical-align: -webkit-baseline-middle;
+}
+
+
+
+  
+  .top {
+    position: relative;
+    padding-top: var(--space);
+    padding-bottom: calc(var(--space)*2);
+  
+    border-bottom: 2px solid var(--color-dark);
+    background-color: var(--color-light);
+  }
+  
+  .top h1 {
+    font-size: 1.8rem;
+  }
+  
+  .top i {
+    display: block;
+  }
+  
+  .top .loader-label {
+    display: block;
+    margin: calc(var(--space)/3) auto;
+    max-width: 150px;
+  
+    visibility: hidden;
+    opacity: 0;
+    animation: 0.5s FadeIn 0.3s ease forwards, 0.5s ScaleDown 0.1s ease forwards;
+  }
+  
+  .top .label {
+    position: absolute;
+    width: 100px;
+    bottom: -50px;
+    left: calc(50% - 50px);
+    display: block;
+  
+    transform: translateY(1rem);
+    visibility: hidden;
+    opacity: 0;
+    animation: 0.7s FadeIn 0.5s ease forwards, 1s ScaleUp 0.5s ease forwards;
+  }
+  
+  .content.load {
+    /* for aligning content center */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .content:not(.load) {
+    padding-top: calc(var(--space)*3);
+    padding-bottom: var(--space);
+  
+    visibility: hidden;
+    opacity: 0;
+    animation: 0.7s FadeIn 0.5s ease forwards;
+  }
+  
+  .error {
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-red);
+  }
+  
+  .layout {
+      padding-left: var(--space); 
+      padding-right: var(--space);
+      margin-left: auto;
+      margin-right: auto;
+  
+      max-width: 1000px;
+  }
+  
+
+  .account {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    justify-items: stretch;
+    column-gap: var(--space);
+  }
+  
+  .account__balance {
+      font-size: 150%;
+      font-weight: 500;
+      font-family: var(--font-family-code);
+      white-space: nowrap;
+  }
+
+  .account__address > *:not(:last-child) {
+      margin-right: calc(var(--space)/2);
+  }
+
+
+
+  .tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: calc(var(--space)*2.5);
+  }
+
+  .tabs button {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-width: 0 0 1px;
+    border-radius: 0;
+    font-size: calc(var(--font-size)*1.5);
+    font-weight: 300;
+  }
+
+  .tabs button:not(.active) {
+    opacity: 0.5;
+    border-color: var(--color-gray)
+  }
+
+  .tabs-content {
+    padding-top: var(--space);
+  }
+  
+ 
+
+
+
+.log {
+  text-align: left;
+  margin: var(--space) auto;
+  width: 100%;
+}
+
+.log-content {
+  border: 1px solid var(--color-gray);
+  max-height: 500px;
+  overflow-y: auto;
+  padding: var(--space);
+  background-color: var(--color-gray-middark);
+  outline: 1px solid #fff;
+  box-shadow: 0 0 60px 20px #fff inset;
+}
+
+.log-title {
+  color: var(--color-gray-dark);
+  font-weight: 300;
+  font-family: var(--font-family-code);
+
+  border-bottom: 1px solid var(--color-gray);
+}
+
+.log .box {
+  margin-bottom: var(--space);
+}
+
+details {
+  transition: 0.2s all ease;
+}
+
+details summary {
+  cursor: pointer;
+}
+
+details.box {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+details.box[open] {
+  padding-bottom: calc(var(--space)*0.5);
+}
+
+details.box:focus {
+  box-shadow: 0 0 5px var(--color-gray)
+}
+
+details.box summary {
+  padding-top: calc(var(--space)*0.5);
+  padding-bottom: calc(var(--space)*0.5);
+}
+
+details.box[open] summary {
+  border-bottom: 1px solid var(--color-dark);
+  margin-bottom: calc(var(--space)*0.5);
+  font-weight: 500;
+}
+
+.log details.box summary {
+  font-family: var(--font-family-code);
+}
