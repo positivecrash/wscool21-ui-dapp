@@ -14,3 +14,5 @@ yarn serve
 ```
 yarn build
 ```
+
+**This is demo of how to edit UI for simple dApp, forked from https://github.com/vol4tim/example-robonomics-dapp/**
