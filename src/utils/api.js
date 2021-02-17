@@ -41,7 +41,7 @@ async function getExtension() {
 
 export async function initAccount(index = 0) {
   const timeout = new Promise(resolve => {
-    setTimeout(resolve, 1000);
+    setTimeout(resolve, 1700);
   });
   await timeout;
   await getExtension();

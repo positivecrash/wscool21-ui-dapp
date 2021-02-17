@@ -1,31 +1,27 @@
 <template>
   <div>
+
     <div class="tools">
       <fieldset>
-        <button @click="read" class="secondary button__large">Read data</button>
+        <Button label="Read data" size="large" type="secondary" @onClick="read" />
       </fieldset>
 
       <fieldset>
         <input v-model="data" :disabled="isWrite" class="large" />
-        <button @click="write" :disabled="isWrite" class="secondary button__large">Write</button>
+        <Button label="Write" :disabled="isWrite" size="large" type="secondary" @onClick="write" />
       </fieldset>
     </div>
 
     <div v-if="error" class="error">{{ error }}</div>
+    
+    <DatalogSection :log="log"/>
 
-    <div v-if="log" class="log">
-      <p v-if="log.length === 0" class="error">Not found</p>
-      <div v-for="(item, k) in log" :key="k" class="row">
-        date: <b>{{ item[0] | dateFormat }}</b>
-        <br />
-        data: <b>{{ item[1] | dataFormat }}</b>
-      </div>
-    </div>
   </div>
 </template>
 
 <script>
-import { stringToHex, u8aToString } from "@polkadot/util";
+
+import { u8aToString, stringToHex } from "@polkadot/util";
 
 export default {
   props: ["api", "account"],
@@ -37,17 +33,17 @@ export default {
       error: ""
     };
   },
-  filters: {
-    dateFormat: function(v) {
-      return new Date(Number(v)).toLocaleString();
-    },
-    dataFormat: function(v) {
-      return u8aToString(v);
-    }
+
+  components: {
+    Button: () => import("./Button"),
+    DatalogSection: () => import("./DatalogSection")
   },
+  
   methods: {
     async read() {
-      this.log = (await this.api.query.datalog.datalog(this.account)).toArray();
+      this.log = (await this.api.query.datalog.datalog(this.account)).toArray().map((item) => {
+        return [new Date(Number(item[0])).toLocaleString(), u8aToString(item[1])]
+      });
     },
     async write() {
       try {
@@ -72,15 +68,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.log {
-  border: 1px solid #eee;
-  text-align: left;
-  width: 800px;
-  margin: 20px auto;
-}
-.log .row {
-  margin: 10px;
-}
-</style>
